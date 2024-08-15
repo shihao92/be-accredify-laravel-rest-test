@@ -10,6 +10,22 @@ use App\Models\Result;
 
 class VerificationController extends Controller
 {
+  /**
+   * POST api/verify
+   *
+   * This endpoint allows user to pass in the JSON and verify its authenticity.
+   *
+   * @bodyParam data object required The data object containing the information to be verified. Example: {"data":{"id":"63c79bd9303530645d1cca00","name":"Certificate of Completion","recipient":{"name":"Marty McFly","email":"marty.mcfly@gmail.com"},"issuer":{"name":"Accredify","identityProof":{"type":"DNS-DID","key":"did:ethr:0x05b642ff12a4ae545357d82ba4f786f3aed84214#controller","location":"ropstore.accredify.io"}},"issued":"2022-12-23T00:00:00+08:00"},"signature":{"type":"SHA3MerkleProof","targetHash":"2e50ae786cb02240bcec1484a92c722ce0bd2e4cdb3ae28bbb12ee3870573da5"}}
+   *
+   * @response 200 {
+   *  "issuer": "Accredify",
+   *  "result": "verified"
+   * }
+   *
+   * @response 401 {
+   *  "message": "Invalid credentials."
+   * }
+   */
   public function verify(Request $request)
   {
       $data = $request->json()->all();

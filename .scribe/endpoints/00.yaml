@@ -1,0 +1,271 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET api/login'
+      description: 'This endpoint allows users to log in by providing their email and password. If the credentials are valid, a JWT access token is returned.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'The email of the user.'
+        required: true
+        example: superadmin@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        custom: []
+      password:
+        name: password
+        description: 'The password of the user.'
+        required: true
+        example: password
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        custom: []
+    cleanBodyParameters:
+      email: superadmin@example.com
+      password: password
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+           "token_type": "Bearer"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+           "message": "Invalid credentials."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/hello
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"message":"Hello World!"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/user
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/verify
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST api/verify'
+      description: 'This endpoint allows user to pass in the JSON and verify its authenticity.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      data.recipient:
+        name: data.recipient
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      data:
+        name: data
+        description: 'The data object containing the information to be verified.'
+        required: true
+        example:
+          data:
+            id: 63c79bd9303530645d1cca00
+            name: 'Certificate of Completion'
+            recipient:
+              name: 'Marty McFly'
+              email: marty.mcfly@gmail.com
+            issuer:
+              name: Accredify
+              identityProof:
+                type: DNS-DID
+                key: 'did:ethr:0x05b642ff12a4ae545357d82ba4f786f3aed84214#controller'
+                location: ropstore.accredify.io
+            issued: '2022-12-23T00:00:00+08:00'
+          signature:
+            type: SHA3MerkleProof
+            targetHash: 2e50ae786cb02240bcec1484a92c722ce0bd2e4cdb3ae28bbb12ee3870573da5
+        type: object
+        enumValues: []
+        exampleWasSpecified: true
+        custom: []
+      data.recipient.name:
+        name: data.recipient.name
+        description: 'Must be at least 1 character.'
+        required: true
+        example: aahnljxzhafydtbsbucskuivdfkgntbqivhxyghxntohgqtqxguijurilyiztyzlhouniyzxbcjjtkptnfbv
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      data.recipient.email:
+        name: data.recipient.email
+        description: 'Must be a valid email address. Must be at least 1 character.'
+        required: true
+        example: river31@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      data:
+        data:
+          id: 63c79bd9303530645d1cca00
+          name: 'Certificate of Completion'
+          recipient:
+            name: 'Marty McFly'
+            email: marty.mcfly@gmail.com
+          issuer:
+            name: Accredify
+            identityProof:
+              type: DNS-DID
+              key: 'did:ethr:0x05b642ff12a4ae545357d82ba4f786f3aed84214#controller'
+              location: ropstore.accredify.io
+          issued: '2022-12-23T00:00:00+08:00'
+        signature:
+          type: SHA3MerkleProof
+          targetHash: 2e50ae786cb02240bcec1484a92c722ce0bd2e4cdb3ae28bbb12ee3870573da5
+        recipient:
+          name: aahnljxzhafydtbsbucskuivdfkgntbqivhxyghxntohgqtqxguijurilyiztyzlhouniyzxbcjjtkptnfbv
+          email: river31@example.net
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "issuer": "Accredify",
+           "result": "verified"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+           "message": "Invalid credentials."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

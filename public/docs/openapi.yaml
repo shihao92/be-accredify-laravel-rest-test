@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /api/login:
+    post:
+      summary: 'GET api/login'
+      operationId: gETApilogin
+      description: 'This endpoint allows users to log in by providing their email and password. If the credentials are valid, a JWT access token is returned.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  token_type: Bearer
+                properties:
+                  access_token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  token_type:
+                    type: string
+                    example: Bearer
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Invalid credentials.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Invalid credentials.'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'The email of the user.'
+                  example: superadmin@example.com
+                password:
+                  type: string
+                  description: 'The password of the user.'
+                  example: password
+              required:
+                - email
+                - password
+      security: []
+  /api/hello:
+    get:
+      summary: ''
+      operationId: getApiHello
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Hello World!'
+                properties:
+                  message:
+                    type: string
+                    example: 'Hello World!'
+      tags:
+        - Endpoints
+      security: []
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/verify:
+    post:
+      summary: 'POST api/verify'
+      operationId: pOSTApiverify
+      description: 'This endpoint allows user to pass in the JSON and verify its authenticity.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  issuer: Accredify
+                  result: verified
+                properties:
+                  issuer:
+                    type: string
+                    example: Accredify
+                  result:
+                    type: string
+                    example: verified
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Invalid credentials.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Invalid credentials.'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  description: 'The data object containing the information to be verified.'
+                  example:
+                    data:
+                      id: 63c79bd9303530645d1cca00
+                      name: 'Certificate of Completion'
+                      recipient:
+                        name: 'Marty McFly'
+                        email: marty.mcfly@gmail.com
+                      issuer:
+                        name: Accredify
+                        identityProof:
+                          type: DNS-DID
+                          key: 'did:ethr:0x05b642ff12a4ae545357d82ba4f786f3aed84214#controller'
+                          location: ropstore.accredify.io
+                      issued: '2022-12-23T00:00:00+08:00'
+                    signature:
+                      type: SHA3MerkleProof
+                      targetHash: 2e50ae786cb02240bcec1484a92c722ce0bd2e4cdb3ae28bbb12ee3870573da5
+                  properties:
+                    recipient:
+                      type: object
+                      description: ''
+                      example: []
+                      properties:
+                        name:
+                          type: string
+                          description: 'Must be at least 1 character.'
+                          example: aahnljxzhafydtbsbucskuivdfkgntbqivhxyghxntohgqtqxguijurilyiztyzlhouniyzxbcjjtkptnfbv
+                        email:
+                          type: string
+                          description: 'Must be a valid email address. Must be at least 1 character.'
+                          example: river31@example.net
+              required:
+                - data
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
