@@ -8,3 +8,5 @@
 ## API docs
 The apidocs are generated via the scribe command using php artisan scribe:generate which is why the function at the controller has a long comments.
 php artisan scribe:generate
+After the php artisan serve is run, can view the apidocs at http://localhost:8000/docs
+Please be mindful that the apidocs is not fully functional yet due to time constraint.
